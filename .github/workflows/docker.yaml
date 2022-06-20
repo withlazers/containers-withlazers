@@ -10,6 +10,7 @@ jobs:
     strategy:
       matrix:
         repository:
+        - nginx-rtmp
         - gcloud
         - jekyll-github
     steps:
@@ -24,8 +25,11 @@ jobs:
         set +e
         set -x
 
+        git fetch origin "${{ github.event.before }}"
+        git fetch origin "${{ github.event.after }}"
+
         if git diff --name-only \
-                ${{ github.push.before }} ${{ github.push.after }} | \
+                "${{ github.event.before }}" "${{ github.event.after }}" | \
               grep "^docker/${{ matrix.repository }}"; then
           echo "::set-output name=changed::1"
         else
