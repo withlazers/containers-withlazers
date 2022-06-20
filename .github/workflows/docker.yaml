@@ -13,6 +13,7 @@ jobs:
         - nginx-rtmp
         - gcloud
         - jekyll-github
+        - iptables
     steps:
     - uses: actions/checkout@v3
       with:
