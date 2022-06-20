@@ -22,8 +22,9 @@ jobs:
       if: ${{ github.ref == 'refs/heads/main' }}
       run: |
         set +e
+        set -x
         if [ "GITHUB_REF" = 'refs/heads/main' ]; then
-          if git diff --name-only HEAD^ HEAD | grep -q "^docker/${{ matrix.repository }}"; then
+          if git diff --name-only HEAD^ HEAD | grep "^docker/${{ matrix.repository }}"; then
             echo "::set-output name=changed::1"
           else
             echo "::set-output name=changed::0"
