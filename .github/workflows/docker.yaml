@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         # Checkout as many commits as needed for the diff
-        fetch-depth: 2
+        fetch-depth: 100
     - name: Check if there are changes to ${{ matrix.repository }}
       id: repo_changed
       if: ${{ github.ref == 'refs/heads/main' }}
@@ -24,7 +24,9 @@ jobs:
         set +e
         set -x
 
-        if git diff --name-only HEAD^ HEAD | grep "^docker/${{ matrix.repository }}"; then
+        if git diff --name-only \
+                ${{ github.push.before }} ${{ github.push.after }} | \
+              grep "^docker/${{ matrix.repository }}"; then
           echo "::set-output name=changed::1"
         else
           echo "::set-output name=changed::0"
