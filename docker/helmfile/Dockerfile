@@ -5,7 +5,7 @@ ARG HELM_DIFF=3.5.0
 ARG HELM_GIT=0.11.2
 ARG HELMFILE=0.143.4
 
-RUN apk add git && \
+RUN apk add git openssh-client-default && \
 	wget -O- https://get.helm.sh/helm-v${HELM}-linux-amd64.tar.gz | \
 		tar -C /usr/local/bin --strip-components=1 -xz linux-amd64/helm && \
 	wget -O /usr/local/bin/helmfile https://github.com/roboll/helmfile/releases/download/v${HELMFILE}/helmfile_linux_amd64 && \
