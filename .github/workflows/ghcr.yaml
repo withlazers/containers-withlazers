@@ -37,7 +37,7 @@ jobs:
       id: build-image
       uses: redhat-actions/buildah-build@v2
       with:
-        archs: "386, amd64, arm64, arm"
+        archs: "amd64, arm64"
         image: ${{ matrix.module }}
         tags: sha-${{ github.sha }} latest ${{ github.ref_name }}
         context: ./container/${{ matrix.module }}
