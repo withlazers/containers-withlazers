@@ -34,13 +34,13 @@ jobs:
         image: withlazers/${{ matrix.module }}
         tags: sha-${{ github.sha }} latest ${{ github.ref_name }}
         context: ./docker/${{ matrix.module }}
-        containerfiles: Dockerfile
-    - name: Push to Dockerhub
-      id: push-to-docker
+        containerfiles: ./Dockerfile
+    - name: Push to GHCR
+      id: push-to-ghcr
       uses: redhat-actions/push-to-registry@v2
       with:
         image: ${{ steps.build-image.outputs.image }}
         tags: ${{ steps.build-image.outputs.tags }}
-        registry: docker.io/withlazers
-        username: withlazers
-        password: ${{ secrets.DOCKER_TOKEN }}
+        registry: ghcr.io/withlazers/containers-withlazers
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
