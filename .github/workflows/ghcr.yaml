@@ -12,9 +12,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - id: find_changed_modules
-      uses: withlazers/find-changed-modules-action@main
-      with:
-        prefix_dir: docker
+      run: |
+        echo 'modules=["keytool"]' > "$GITHUB_OUTPUT"
+    #- id: find_changed_modules
+    #  uses: withlazers/find-changed-modules-action@main
+    #  with:
+    #    prefix_dir: docker
 
   docker_push:
     runs-on: 'ubuntu-latest'
