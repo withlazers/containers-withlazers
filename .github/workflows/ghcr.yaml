@@ -39,7 +39,7 @@ jobs:
         image: ghcr.io/withlazers/containers-withlazers/${{ matrix.module }}
         tags: sha-${{ github.sha }} latest ${{ github.ref_name }}
         context: ./container/${{ matrix.module }}
-        containerfiles: ./Dockerfile
+        containerfiles: ./container/${{ matrix.module }}/Dockerfile
     - name: Push to GHCR
       id: push-to-ghcr
       uses: redhat-actions/push-to-registry@v2
