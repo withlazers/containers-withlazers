@@ -1,17 +1,17 @@
-FROM alpine:3.21 AS build
+FROM alpine:3.17 AS build
 
 RUN apk add --no-cache ruby-bundler ruby-dev build-base
 
 WORKDIR /site
 COPY Gemfile* .
 
-RUN bundle install && \
+RUN set -x; bundle install && \
 	sed -i '/"destination"/s#=> .*#=> "/tmp/site",#' \
 		/usr/lib/ruby/gems/*/gems/jekyll-[0-9]*/lib/jekyll/configuration.rb && \
 	bundle binstubs --all --path /usr/local/bin && \
 	rm -rf /usr/lib/ruby/gems/3.1.0/cache
 
-FROM alpine:3.16
+FROM alpine:3.17
 
 RUN apk add --no-cache ruby-bundler git && \
 	git config --global --add safe.directory /site
