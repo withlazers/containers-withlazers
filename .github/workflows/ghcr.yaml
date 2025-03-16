@@ -11,13 +11,13 @@ jobs:
       modules: ${{ steps.find_changed_modules.outputs.modules }}
     steps:
     - uses: actions/checkout@v3
-    - id: find_changed_modules
-      run: |
-        echo 'modules=["gcloud","helm","helmfile","iptables","jekyll-github","keytool-kubectl","kubectl"]' > "$GITHUB_OUTPUT"
     #- id: find_changed_modules
-    #  uses: withlazers/find-changed-modules-action@main
-    #  with:
-    #    prefix_dir: container
+    #  run: |
+    #    echo 'modules=["gcloud","helm","helmfile","iptables","jekyll-github","keytool-kubectl","kubectl"]' > "$GITHUB_OUTPUT"
+    - id: find_changed_modules
+      uses: withlazers/find-changed-modules-action@main
+      with:
+        prefix_dir: container
 
   container_push:
     runs-on: 'ubuntu-latest'
