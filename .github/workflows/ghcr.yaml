@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@v3
     - id: find_changed_modules
       run: |
-        echo 'modules=["gcloud","helm","helmfile","iptables","jekyll-github","keytool","kubectl","nginx-rtmp"]' > "$GITHUB_OUTPUT"
+        echo 'modules=["gcloud","helm","helmfile","iptables","jekyll-github","keytool","kubectl"]' > "$GITHUB_OUTPUT"
     #- id: find_changed_modules
     #  uses: withlazers/find-changed-modules-action@main
     #  with:

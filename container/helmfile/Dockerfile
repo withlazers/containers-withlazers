@@ -1,9 +1,9 @@
-FROM alpine:3.16
+FROM alpine:3.21
 
-ARG HELM=3.9.0
-ARG HELM_DIFF=3.5.0
-ARG HELM_GIT=0.11.2
-ARG HELMFILE=0.144.0
+ARG HELM=3.17.0
+ARG HELM_DIFF=3.10.0
+ARG HELM_GIT=1.30
+ARG HELMFILE=0.171.0
 
 RUN apk add git openssh-client-default && \
 	wget -O- https://get.helm.sh/helm-v${HELM}-linux-amd64.tar.gz | \

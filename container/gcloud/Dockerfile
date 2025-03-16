@@ -1,5 +1,5 @@
-FROM alpine:3.16
-ARG VERSION=390.0.0
+FROM alpine:3.21
+ARG VERSION=514.0.0
 
 RUN apk add --no-cache python3 bash && \
 	adduser -D -s /bin/bash -G wheel gcloud && \

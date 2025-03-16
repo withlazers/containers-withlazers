@@ -1,4 +1,4 @@
-FROM alpine:3.16 AS build
+FROM alpine:3.21 AS build
 
 RUN apk add --no-cache ruby-bundler ruby-dev build-base
 
