@@ -30,6 +30,10 @@ jobs:
       matrix:
         module: ${{ fromJSON(needs.find_changed_modules.outputs.modules) }}
     steps:
+    - name: Install qemu dependency
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static
     - uses: actions/checkout@v3
     - name: Build Docker Image
       id: build-image
