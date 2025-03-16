@@ -1,4 +1,5 @@
 FROM alpine:3.21
 
+#trigger
 RUN apk add --no-cache \
 		"java-common" "ca-certificates" "kubectl" "openjdk8-jre-base"
